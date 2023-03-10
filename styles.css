@@ -1,0 +1,40 @@
+body {
+  margin: 0 auto;
+  max-width: 50rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  padding: 4rem 1rem;
+  color: #555;
+}
+
+h1,
+strong {
+  color: #333;
+}
+
+a {
+  color: #c75a00;
+}
+
+.messages-name {
+  border: 2px red solid;
+  width: 40%;
+  float: left;
+}
+
+.messages-score {
+  border: 2px green solid;
+  width: 50%;
+  float: left;
+}
+
+#messages-container {
+  /* border: 2px brown solid; */
+  width: 100%;
+}
+
+#game-div {
+  /* border: 2px pink solid; */
+  margin: 0 auto;
+  position: relative;
+}

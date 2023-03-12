@@ -17,6 +17,8 @@ let items;
 
 function preload() {
   soundFormats("mp3");
+  quartzo = loadFont("assets/quartzo.ttf");
+
   // game_over_sound = loadSound("./assets/game_over.mp3");
   // bounce_sound = loadSound("bounce.wav");
 }
@@ -25,6 +27,7 @@ function setup() {
   cnv = createCanvas(400, 400);
   cnv.parent("game-div");
   items = new Group();
+  frameRate(60);
 }
 
 function draw() {
@@ -61,13 +64,24 @@ function startScreen() {
   levelSpeed = -1;
   textAlign(CENTER);
   textLeading(45);
+  textFont("Coiny");
   text("Levels Game!", width / 2, height / 2);
   textSize(18);
   if (playBtnCounter) {
     nextScreenBtn = createButton("Play");
     nextScreenBtn.parent("game-div");
 
-    nextScreenBtn.position(-220, -100, "relative");
+    nextScreenBtn.position(-250, 300, "relative");
+    nextScreenBtn.size(100, 40);
+    nextScreenBtn.style(
+      "background-color: #ff70a6; border: none; border-radius: 10px"
+    );
+    nextScreenBtn.mouseOver(() =>
+      nextScreenBtn.style("background-color: #f694c1;")
+    );
+    nextScreenBtn.mouseOut(() =>
+      nextScreenBtn.style("background-color: #ff70a6;")
+    );
     nextScreenBtn.mouseClicked(changeScreen);
     playBtnCounter = false;
   }
@@ -80,9 +94,11 @@ function clearCanvas() {
 
 function gameOn() {
   let x_pos = random(0, 400);
+  let platform_width = random(40, 350);
 
-  background("gray");
+  background("#e4f1f7");
   text("Score: " + timeCounter, width / 2, 20);
+  noStroke();
 
   for (let s of allSprites) {
     if (s.x < -MARGIN) s.x = width + MARGIN;
@@ -132,7 +148,7 @@ function gameOn() {
     timeCounter++;
     // Sprite ( [x]  [y]  [width]  [height]  [colliderType] )
     // Add a floor
-    floor = new items.Sprite(x_pos, 400, 200, 10);
+    floor = new items.Sprite(x_pos, 400, platform_width, 10);
     floor.collider = "k";
     floor.velocity.y = levelSpeed;
   }
@@ -152,22 +168,34 @@ function gameOver() {
     sound = false;
   }
   background("#fce6e6");
-  text("Score: " + timeCounter, width / 2, 20);
   fill("black");
   textAlign(CENTER);
   textSize(32);
   textLeading(45);
-  text("Game over :(", width / 2, height / 2);
-  text("Enter your name", width / 2, height / 2 + 40);
+  text("Game over :(", width / 2, 50);
+  textSize(24);
+  text("Score: " + timeCounter, width / 2, 100);
+
+  textSize(12);
+  text("Enter your name", 120, 130);
 
   textSize(18);
 
   if (replayBtnCounter) {
     nameInput = createInput();
-    nameInput.position(-310, -100, "relative");
+    nameInput.position(-330, 160, "relative");
+    nameInput.size(160, 30);
+    nameInput.style("border: none; border-radius: 10px");
     nameInput.parent("game-div");
     button = createButton("submit");
-    button.position(-310, -100, "relative");
+    button.size(80, 30);
+
+    button.style(
+      "background-color: #D6B5DD; border: none; border-radius: 10px"
+    );
+    button.mouseOver(() => button.style("background-color: #D35DEB;"));
+    button.mouseOut(() => button.style("background-color: #D6B5DD;"));
+    button.position(-320, 160, "relative");
     button.parent("game-div");
     button.mouseClicked(changeScreen);
     replayBtnCounter = false;

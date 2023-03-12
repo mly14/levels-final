@@ -62,7 +62,7 @@ function handleInput(e) {
   }
 }
 
-render(view(), document.body);
+// render(view(), document.body);
 
 async function getAllMessages() {
   messages = [];
@@ -83,9 +83,8 @@ getAllMessages();
 
 function view() {
   return html` <div id="messages-container">
-    ${messages.map((msg) => html`<div class="messages-name">${msg.name}</div>`)}
     ${messages.map(
-      (msg) => html`<div class="messages-score">${msg.score}</div>`
+      (msg) => html`<div class="messages-name">${msg.name}: ${msg.score}</div>`
     )}
   </div>`;
 }

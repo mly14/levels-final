@@ -19,7 +19,7 @@ a {
 .messages-name {
   border: 2px red solid;
   width: 40%;
-  float: left;
+  /* float: left; */
 }
 
 .messages-score {
@@ -35,6 +35,12 @@ a {
 
 #game-div {
   /* border: 2px pink solid; */
-  margin: 0 auto;
-  position: relative;
+  /* margin: 0 auto;
+  position: relative; */
+
+  margin: 0;
+  display: flex;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
 }

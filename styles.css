@@ -34,13 +34,10 @@ a {
 }
 
 #game-div {
-  /* border: 2px pink solid; */
-  /* margin: 0 auto;
-  position: relative; */
-
-  margin: 0;
+  width: 400px;
+  height: 4s00px;
+  margin: auto;
   display: flex;
-
-  /* This centers our sketch horizontally. */
   justify-content: center;
+  position: relative;
 }

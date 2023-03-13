@@ -76,20 +76,26 @@ async function getAllMessages() {
   });
 
   console.log(messages);
-  render(view(), document.body);
+  // render(view(), document.body);
 }
 
 getAllMessages();
 
-function view() {
-  return html` <div id="messages-container">
-    ${messages.map(
-      (msg) => html`<div class="messages-name">${msg.name}: ${msg.score}</div>`
-    )}
-  </div>`;
+// function view() {
+//   return html` <div id="messages-container">
+//     ${messages.map(
+//       (msg) => html`<div class="messages-name">${msg.name}: ${msg.score}</div>`
+//     )}
+//   </div>`;
+// }
+
+function retrieve_scores() {
+  return messages;
 }
 
-window.view = view;
+window.retrieve_scores = retrieve_scores;
+
+// window.view = view;
 
 onSnapshot(
   collection(db, "messages"),

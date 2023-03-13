@@ -24,7 +24,7 @@ function preload() {
 }
 
 function setup() {
-  cnv = createCanvas(400, 400);
+  cnv = createCanvas(400, 400, "absolute");
   cnv.parent("game-div");
   items = new Group();
   frameRate(60);
@@ -71,10 +71,11 @@ function startScreen() {
     nextScreenBtn = createButton("Play");
     nextScreenBtn.parent("game-div");
 
-    nextScreenBtn.position(-250, 300, "relative");
+    nextScreenBtn.position(150, 290, "absolute");
+    // nextScreenBtn.y(-250);
     nextScreenBtn.size(100, 40);
     nextScreenBtn.style(
-      "background-color: #ff70a6; border: none; border-radius: 10px"
+      "background-color: #ff70a6; border: none; border-radius: 10px; font-family:'Poppins'"
     );
     nextScreenBtn.mouseOver(() =>
       nextScreenBtn.style("background-color: #f694c1;")
@@ -162,28 +163,30 @@ function gameOn() {
 }
 
 function gameOver() {
-  allSprites.remove();
-  if (sound == true) {
-    game_over_sound.play();
-    sound = false;
-  }
-  background("#fce6e6");
-  fill("black");
-  textAlign(CENTER);
-  textSize(32);
-  textLeading(45);
-  text("Game over :(", width / 2, 50);
-  textSize(24);
-  text("Score: " + timeCounter, width / 2, 100);
-
-  textSize(12);
-  text("Enter your name", 120, 130);
-
-  textSize(18);
-
   if (replayBtnCounter) {
+    allSprites.remove();
+    if (sound == true) {
+      game_over_sound.play();
+      sound = false;
+    }
+    background("#fce6e6");
+    fill("black");
+    textAlign(CENTER);
+    textSize(32);
+    textLeading(45);
+    textFont("Coiny");
+    text("Game over :(", width / 2, 50);
+    textSize(24);
+    text("Score: " + timeCounter, width / 2, 100);
+
+    textSize(12);
+    textFont("Poppins");
+    text("Enter your name", 120, 130);
+
+    textSize(18);
+
     nameInput = createInput();
-    nameInput.position(-330, 160, "relative");
+    nameInput.position(70, 140, "absolute");
     nameInput.size(160, 30);
     nameInput.style("border: none; border-radius: 10px");
     nameInput.parent("game-div");
@@ -191,14 +194,26 @@ function gameOver() {
     button.size(80, 30);
 
     button.style(
-      "background-color: #D6B5DD; border: none; border-radius: 10px"
+      "background-color: #D6B5DD; border: none; border-radius: 10px; font-family:'Poppins'"
     );
     button.mouseOver(() => button.style("background-color: #D35DEB;"));
     button.mouseOut(() => button.style("background-color: #D6B5DD;"));
-    button.position(-320, 160, "relative");
+    button.position(240, 140, "absolute");
     button.parent("game-div");
     button.mouseClicked(changeScreen);
     replayBtnCounter = false;
+
+    textFont("Coiny");
+
+    text("Top Scores", 200, 220);
+    // Leaderboard
+    scores_array = window.retrieve_scores();
+    textFont("Poppins");
+
+    for (let i = 0; i < scores_array.length; i++) {
+      text(scores_array[i].name, 160, 280 + i * 20);
+      text(scores_array[i].score, 240, 280 + i * 20);
+    }
   }
 }
 

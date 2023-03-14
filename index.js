@@ -62,8 +62,6 @@ function handleInput(e) {
   }
 }
 
-// render(view(), document.body);
-
 async function getAllMessages() {
   messages = [];
 
@@ -76,26 +74,15 @@ async function getAllMessages() {
   });
 
   console.log(messages);
-  // render(view(), document.body);
 }
 
 getAllMessages();
-
-// function view() {
-//   return html` <div id="messages-container">
-//     ${messages.map(
-//       (msg) => html`<div class="messages-name">${msg.name}: ${msg.score}</div>`
-//     )}
-//   </div>`;
-// }
 
 function retrieve_scores() {
   return messages;
 }
 
 window.retrieve_scores = retrieve_scores;
-
-// window.view = view;
 
 onSnapshot(
   collection(db, "messages"),
